@@ -1,0 +1,2 @@
+﻿This is second input file to test with different values example Benz with registration KT17DLX the value of the car is roughly around £6000.
+However car with registration SG18HTN is not worth much in current market.

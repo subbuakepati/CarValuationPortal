@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="32.744">
+    <testcase classname="Car Details Check feature" name="Verify Vehicle details" time="32.631">
+        <system-out><![CDATA[Given I have list of Car Registration Numbers in the "src/test/resources/testdata/car_input.txt".passed
+And I have expected car details are there in the "src/test/resources/testdata/car_output.txt".passed
+When I check car details in the webuyanycar website.........................passed
+Then Actual vehicle details are verified with expected details..............passed
+]]></system-out>
+    </testcase>
+</testsuite>

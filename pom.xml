@@ -1,0 +1,196 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.example</groupId>
+  <artifactId>CarValuationPortal</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>CarValuationPortal</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>1.11</java.version>
+    <maven.build.timestamp.format>yyyy-MM-dd-HHmm</maven.build.timestamp.format>
+    <encoding>UTF-8</encoding>
+    <cucumber.version>7.9.0</cucumber.version>
+    <selenium.version>4.10.0</selenium.version>
+  </properties>
+  <build>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.6.0</version>
+          <configuration>
+            <encoding>UTF-8</encoding>
+            <source>8</source>
+            <target>8</target>
+          </configuration>
+        </plugin>
+
+        <!-- disables unit tests -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.19.1</version>
+          <configuration>
+          </configuration>
+        </plugin>
+
+        <!-- integration tests i.e. cucumber tests -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>2.19.1</version>
+          <configuration>
+
+            <systemPropertyVariables>
+              <project.dir>${basedir}</project.dir>
+            </systemPropertyVariables>
+          </configuration>
+
+        </plugin>
+
+      </plugins>
+    </build>
+
+    <dependencies>
+
+      <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-java -->
+      <dependency>
+        <groupId>info.cukes</groupId>
+        <artifactId>cucumber-java</artifactId>
+        <version>1.2.5</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-core -->
+      <dependency>
+        <groupId>info.cukes</groupId>
+        <artifactId>cucumber-core</artifactId>
+        <version>1.2.5</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/info.cukes/gherkin -->
+      <dependency>
+        <groupId>info.cukes</groupId>
+        <artifactId>gherkin</artifactId>
+        <version>2.12.2</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>${selenium.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-firefox-driver</artifactId>
+        <version>${selenium.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-chrome-driver</artifactId>
+        <version>${selenium.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-ie-driver</artifactId>
+        <version>${selenium.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-safari-driver</artifactId>
+        <version>${selenium.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-remote-driver</artifactId>
+        <version>${selenium.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-edge-driver</artifactId>
+        <version>${selenium.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.inject</groupId>
+        <artifactId>guice</artifactId>
+        <version>4.1.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.opencsv</groupId>
+        <artifactId>opencsv</artifactId>
+        <version>5.2</version>
+      </dependency>
+
+      <!-- test dependencies -->
+      <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-java</artifactId>
+        <version>${cucumber.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-jvm</artifactId>
+        <version>${cucumber.version}</version>
+        <type>pom</type>
+      </dependency>
+
+
+      <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-junit</artifactId>
+        <version>${cucumber.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.34</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>io.github.bonigarcia</groupId>
+        <artifactId>webdrivermanager</artifactId>
+        <version>5.9.2</version>
+      </dependency>
+    </dependencies>
+
+    <profiles>
+      <profile>
+        <id>serial</id>
+        <activation>
+          <activeByDefault>true</activeByDefault>
+        </activation>
+        <properties>
+          <failsafe.fork.count>1</failsafe.fork.count>
+          <classes>**/AllTests.java</classes>
+        </properties>
+      </profile>
+      <profile>
+        <id>parallel</id>
+        <properties>
+          <failsafe.fork.count>4</failsafe.fork.count>
+          <classes>**/*IT.java</classes>
+        </properties>
+      </profile>
+    </profiles>
+
+  </project>
